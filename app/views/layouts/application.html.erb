@@ -9,6 +9,13 @@
   </head>
 
   <body>
+    <!-- Code for message popup (articles_contorller) -->
+    <% flash.each do |name, msg| %> 
+      <ul>
+        <li><%= msg %></li>
+      </ul>
+    <% end %>
+    <!-- View = -->
     <%= yield %>
   </body>
 </html>
