@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_action :set_article, only: [:edit, :update, :show, :destroy]
+  # The above code replaces the line @article = Article.find(params[:id]) in methods edit, update, show, destroy and instead uses method set_article with the same code.
   
   def index
     @articles_all = Article.all # grabs all articles
@@ -27,23 +29,19 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def show
-    @article = Article.find(params[:id]) # This passes through the article ID to the 'show' view.
+  def show # This passes through the article ID to the 'show' view.
   end
 
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
     flash[:notice] = "Article was successfully deleted"
     redirect_to articles_path
   end
 
   def edit
-    @article = Article.find(params[:id])
   end
 
   def update # Similar to create method, this updates for 'edit'
-    @article = Article.find(params[:id])
     if @article.update(article_params)
       flash[:notice] = "Article was successfully updated"
       redirect_to article_path(@article)
@@ -55,6 +53,9 @@ class ArticlesController < ApplicationController
   private
     def article_params
       params.require(:article).permit(:title, :description)
+    end
+    def set_article
+      @article = Article.find(params[:id])
     end
 
 end
