@@ -1,1 +1,12 @@
+$navbar-default-bg: #d9d9d9;
+
+@import "bootstrap-sprockets";
 @import "bootstrap";
+
+#logo {
+  float: left;
+  font-size: 1.7em;
+  color: #262626;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
