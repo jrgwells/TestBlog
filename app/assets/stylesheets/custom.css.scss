@@ -10,3 +10,27 @@ $navbar-default-bg: #d9d9d9;
   letter-spacing: -1px;
   font-weight: bold;
 }
+
+.center {
+  text-align: center;
+}
+
+.jumbotron {
+  background-image: asset-url('cover_page.jpeg');
+  background-size: cover;
+  height: 550px;
+}
+
+.jumbotron h1 {
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+.btn-xlarge {
+  font-size: 1.7em;
+  background-color: black;
+  
+}
