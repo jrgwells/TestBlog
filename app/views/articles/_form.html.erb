@@ -1,12 +1,4 @@
-<% if @article.errors.any? %>
-<h2>Error!</h2>
-<h3>The following errors prevented the article from getting created:</h3>
-  <ul> <!-- List used as multiple errors (Title, Description) may occur -->
-    <% @article.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render 'shared/errors', object: @article %>
 
 <div class='row'>
   <div class='col-md-12'>
