@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   # The above code replaces the line @article = Article.find(params[:id]) in methods edit, update, show, destroy and instead uses method set_article with the same code.
   
   def index
-    @articles = Article.all # grabs all articles
+    @articles = Article.paginate(page: params[:page], per_page: 5)
   end
   
   def new
