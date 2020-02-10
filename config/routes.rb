@@ -14,4 +14,7 @@ Rails.application.routes.draw do
   # update article PATCH /articles/:id articles#update
   # show article article GET /articles/:id articles#show
   # delete article DELETE /articles/:id articles#destroy
-end
+
+  get 'newusr', to: 'users#new'
+  resources :users, except: [:new]
+end 
