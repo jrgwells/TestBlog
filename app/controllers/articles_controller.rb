@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:edit, :update, :show, :destroy]
-  # The above code replaces the line @article = Article.find(params[:id]) in methods edit, update, show, destroy and instead uses method set_article with the same code.
+  before_action :require_user, except: [:index, :show]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
   
   def index
     @articles = Article.paginate(page: params[:page], per_page: 5)
@@ -10,16 +11,9 @@ class ArticlesController < ApplicationController
     @article = Article.new
   end
 
-  # def create
-  #   #render plain: params[:article].inspect
-  #   @article = Article.new(article_params)
-  #   @article.save
-  #   redirect_to articles_path(@article) # redirects to article, passes in @article
-  # end
-
-  def create # Creates articles for 'new'
+  def create
     @article = Article.new(article_params)
-    @article.user = User.first
+    @article.user = current_user
     if @article.save
       flash[:success] = "Article was successfully created"
       redirect_to article_path(@article)
@@ -28,7 +22,7 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def show # This passes through the article ID to the 'show' view.
+  def show
   end
 
   def destroy
@@ -40,7 +34,7 @@ class ArticlesController < ApplicationController
   def edit
   end
 
-  def update # Similar to create method, this updates for 'edit'
+  def update
     if @article.update(article_params)
       flash[:success] = "Article was successfully updated"
       redirect_to article_path(@article)
@@ -56,5 +50,10 @@ class ArticlesController < ApplicationController
     def set_article
       @article = Article.find(params[:id])
     end
-
+    def require_same_user
+      if current_user != @article.user
+        flash[:danger] = "you can only edit or delete your own articles"
+        redirect_to root_path
+      end
+    end
 end
