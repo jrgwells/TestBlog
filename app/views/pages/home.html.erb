@@ -1,5 +1,9 @@
 <div class="center jumbotron">
-<!-- The 'center class is a custom class, see custom.css.scss -->
   <h1>TestBlog</h1>
-  <%= link_to "Sign up now", "newusr", class: "btn btn-info btn-lg btn-xlarge" %>
+  <% if !logged_in? %>
+    <%= link_to "Sign up now", "newusr", class: "btn btn-info btn-lg btn-xlarge" %>
+  <% else %>
+    <%= link_to "View all articles", "articles", class: "btn btn-info btn-lg btn-xlarge" %> 
+  <% end %>
+    
 </div>
