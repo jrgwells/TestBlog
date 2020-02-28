@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CategoriesControllerTest < ActionController:TestCase
+class CategoriesControllerTest < ActionController::TestCase
 
   test "should get categories index" do
     get :index # 'get' is a HTTP verb

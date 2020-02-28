@@ -3,9 +3,7 @@ Rails.application.routes.draw do
   root 'pages#home'
   get 'about', to: 'pages#about'
 
-  resources :articles
-  # This adds the following routes:
-  
+  resources :articles # This adds the following routes:
   # routes path HTTP verb link controller#action
   # articles index articles GET /articles articles#index
   # new article new_article GET /articles/new articles#new
@@ -21,4 +19,8 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
+
+  resources :categories, except:  [:destroy]
+  # Creates routes for categories, except the delete (destroy) function 
+
 end 
